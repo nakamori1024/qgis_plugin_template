@@ -3,8 +3,8 @@ import os
 from PyQt5.QtWidgets import QAction
 from qgis.PyQt.QtGui import QIcon
 
-from sample_menu_01 import SampleMenu01
-from sample_menu_02 import SampleMenu02
+from .sample_menu_01 import SampleMenu01
+from .sample_menu_02 import SampleMenu02
 
 PLUGIN_NAME = "sample"
 
