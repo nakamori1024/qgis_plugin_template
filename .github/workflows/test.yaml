@@ -28,10 +28,10 @@ jobs:
                   pip3 install poetry
                   poetry export --with dev -f requirements.txt -o requirements.txt
 
-            # - name: Docker pull and create qgis-testing-environment
-            #   run: |
-            #       docker pull "$DOCKER_IMAGE":${{ matrix.docker_tags }}
-            #       docker run -d --name qgis-testing-environment -v .:/tests_directory/$PLUGIN_NAME -e DISPLAY=:99 "$DOCKER_IMAGE":${{ matrix.docker_tags }}
+            - name: Docker pull and create qgis-testing-environment
+              run: |
+                  docker pull "$DOCKER_IMAGE":${{ matrix.docker_tags }}
+                  docker run -d --name qgis-testing-environment -v .:/tests_directory/$PLUGIN_NAME -e DISPLAY=:99 "$DOCKER_IMAGE":${{ matrix.docker_tags }}
 
             # - name: Docker set up QGIS
             #   run: |
