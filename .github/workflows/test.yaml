@@ -28,18 +28,18 @@ jobs:
                   pip3 install poetry
                   poetry export --with dev -f requirements.txt -o requirements.txt
 
-            # - name: Docker pull and create qgis-testing-environment
-            #   run: |
-            #       docker pull "$DOCKER_IMAGE":${{ matrix.docker_tags }}
-            #       docker run -d --name qgis-testing-environment -v .:/tests_directory/$PLUGIN_NAME -e DISPLAY=:99 "$DOCKER_IMAGE":${{ matrix.docker_tags }}
+            - name: Docker pull and create qgis-testing-environment
+              run: |
+                  docker pull "$DOCKER_IMAGE":${{ matrix.docker_tags }}
+                  docker run -d --name qgis-testing-environment -v .:/tests_directory/$PLUGIN_NAME -e DISPLAY=:99 "$DOCKER_IMAGE":${{ matrix.docker_tags }}
 
-            # - name: Docker set up QGIS
-            #   run: |
-            #       docker exec qgis-testing-environment sh -c "qgis_setup.sh $PLUGIN_NAME"
-            #       docker exec qgis-testing-environment sh -c "rm -f /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/$PLUGIN_NAME"
-            #       docker exec qgis-testing-environment sh -c "ln -s /tests_directory/$PLUGIN_NAME /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/$PLUGIN_NAME"
-            #       docker exec qgis-testing-environment sh -c "pip3 install -r /tests_directory/$PLUGIN_NAME/requirements.txt"
+            - name: Docker set up QGIS
+              run: |
+                  docker exec qgis-testing-environment sh -c "qgis_setup.sh $PLUGIN_NAME"
+                  docker exec qgis-testing-environment sh -c "rm -f /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/$PLUGIN_NAME"
+                  docker exec qgis-testing-environment sh -c "ln -s /tests_directory/$PLUGIN_NAME /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/$PLUGIN_NAME"
+                  docker exec qgis-testing-environment sh -c "pip3 install -r /tests_directory/$PLUGIN_NAME/requirements.txt"
 
-            # - name: Docker run plugin tests
-            #   run: |
-            #       docker exec qgis-testing-environment sh -c "qgis_testrunner.sh $PLUGIN_NAME.test_suite.test_package"
+            - name: Docker run plugin tests
+              run: |
+                  docker exec qgis-testing-environment pytest /tests_directory/$PLUGIN_NAME/tests
