@@ -4,9 +4,6 @@ from PyQt5.QtWidgets import QDialog, QMessageBox
 from qgis.PyQt import uic
 
 
-
-
-
 class SampleMenu01(QDialog):
     def __init__(self):
         super().__init__()
