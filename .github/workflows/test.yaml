@@ -42,4 +42,4 @@ jobs:
 
             - name: Docker run plugin tests
               run: |
-                  docker exec poetry run pytest /tests_directory/$PLUGIN_NAME/tests
+                  docker exec qgis-testing-environment pytest /tests_directory/$PLUGIN_NAME/tests
