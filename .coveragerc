@@ -2,4 +2,5 @@
 omit =
     /.venv/*
     tests/*
-    /tests_directory/plugin_name/tests/*
+    ../tests/*
+    /usr/lib/python3/dist-packages/*
