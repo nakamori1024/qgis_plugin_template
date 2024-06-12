@@ -1,5 +1,5 @@
 [run]
 omit =
     /.venv/*
-    /tests/*
-    tests_directory/plugin_name/tests/*
+    tests/*
+    /tests_directory/plugin_name/tests/*
